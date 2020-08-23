@@ -1,0 +1,22 @@
+{
+  "name": "golf_solitaire",
+  "version": "1.0.0",
+  "description": "JavaScript implementation of golf solitaire",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meteoratlas/Golf-Solitaire.git"
+  },
+  "author": "Kelly Horan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meteoratlas/Golf-Solitaire/issues"
+  },
+  "homepage": "https://github.com/meteoratlas/Golf-Solitaire#readme",
+  "dependencies": {
+    "pixi.js": "^5.3.3"
+  }
+}
