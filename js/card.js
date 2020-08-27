@@ -8,6 +8,7 @@ class Card extends PIXI.Sprite {
         this.interactive = true;
         this.buttonMode = true;
         this.anchor.set(0.5);
+        this.scale.set(0.75);
 
         this.on("pointerdown", this.onDragStart)
             .on("pointerup", this.onDragEnd)

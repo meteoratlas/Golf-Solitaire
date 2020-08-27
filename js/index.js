@@ -15,9 +15,9 @@ function setup() {
 }
 
 PIXI.Loader.shared.onComplete.add(function (loader, resources) {
-    // let sprite = new Card("Clubs", "10", sheet.textures["10C.png"]);
-    // app.stage.addChild(sprite);
-    initDeck();
+    const deck = initDeck();
+    const board = new Board(7, deck);
+    app.stage.addChild(board);
 });
 
 PIXI.Loader.shared.load();
