@@ -1,10 +1,23 @@
-var app = new PIXI.Application({
+const app = new PIXI.Application({
     width: 640,
     height: 360,
     backgroundColor: 0x40a940,
     resolution: window.devicePixelRatio || 1,
 });
 document.body.appendChild(app.view);
+
+PIXI.Loader.shared.add("assets/spritesheet.json").load(setup);
+let sheet;
+function setup() {
+    sheet = PIXI.Loader.shared.resources["assets/spritesheet.json"].spritesheet;
+}
+
+PIXI.Loader.shared.onComplete.add(function (loader, resources) {
+    let sprite = new PIXI.Sprite(sheet.textures["10C.png"]);
+    app.stage.addChild(sprite);
+});
+
+PIXI.Loader.shared.load();
 
 const SUITES = ["Clubs", "Diamonds", "Hearts", "Spades"];
 const RANKS = [
