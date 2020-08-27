@@ -13,7 +13,7 @@ function setup() {
 }
 
 PIXI.Loader.shared.onComplete.add(function (loader, resources) {
-    let sprite = new PIXI.Sprite(sheet.textures["10C.png"]);
+    let sprite = new Card("Clubs", "10", sheet.textures["10C.png"]);
     app.stage.addChild(sprite);
 });
 
