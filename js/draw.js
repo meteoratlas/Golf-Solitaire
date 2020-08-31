@@ -1,21 +1,31 @@
 class Draw extends PIXI.Container {
-    constructor(deck, backTexture) {
+    constructor(point, deck, backTexture) {
         super();
 
+        this.position = point;
         this.spaceBetweenPiles = 96;
+        this.deck = deck;
+        this.discarded = [];
 
-        const drawPile = new PIXI.Sprite(backTexture);
-        drawPile.buttonMode = true;
-        drawPile.interactive = true;
-        drawPile.on("pointerdown", onDrawPileClicked);
+        this.drawPile = new PIXI.Sprite(backTexture);
+        this.drawPile.anchor.set(0.5);
+        this.drawPile.buttonMode = true;
+        this.drawPile.interactive = true;
+        this.drawPile.scale.set(0.75);
 
-        const discardPile = new PIXI.Sprite(deck.pop().image);
-        discardPile.x = drawPile.x + this.spaceBetweenPiles;
+        this.drawPile.on("pointerdown", this.onDrawPileClicked);
+
+        this.addChild(this.drawPile);
+
+        this.discardPile = new PIXI.Sprite(this.deck.pop().image);
+        this.discardPile.x = this.drawPile.x + this.spaceBetweenPiles;
+        this.discardPile.anchor.set(0.5);
+        this.addChild(this.discardPile);
     }
 
-    onDrawPileClicked(e) {
-        if (deck.length <= 0) return;
+    onDrawPileClicked = (e) => {
+        if (this.deck.length <= 0) return;
 
-        discardPile.push(drawPile.pop());
-    }
+        this.discarded.push(this.deck.pop());
+    };
 }

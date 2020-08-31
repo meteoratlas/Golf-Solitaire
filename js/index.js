@@ -1,6 +1,6 @@
 const app = new PIXI.Application({
     width: 640 * 2,
-    height: 640 * 2,
+    height: 480 * 2,
     backgroundColor: 0x40a940,
     resolution: window.devicePixelRatio || 1,
 });
@@ -17,11 +17,21 @@ function setup() {
 PIXI.Loader.shared.onComplete.add(function (loader, resources) {
     const deck = initDeck();
     const board = new Board(7, deck);
+    const draws = new Draw(
+        drawPilesLocation,
+        deck,
+        sheet.textures["red_back.png"]
+    );
     app.stage.addChild(board);
+    app.stage.addChild(draws);
 });
 
 PIXI.Loader.shared.load();
 
+const drawPilesLocation = new PIXI.Point(
+    app.renderer.width / 2,
+    app.renderer.height + 64 - 0.75 * 316 /* TODO */
+);
 const SUITES = ["Clubs", "Diamonds", "Hearts", "Spades"];
 const RANKS = [
     "2",
