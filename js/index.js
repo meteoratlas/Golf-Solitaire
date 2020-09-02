@@ -9,6 +9,7 @@ document.body.appendChild(app.view);
 PIXI.Loader.shared.add("assets/spritesheet.json").load(setup);
 
 let sheet;
+const discard = [];
 
 function setup() {
     sheet = PIXI.Loader.shared.resources["assets/spritesheet.json"].spritesheet;
@@ -56,7 +57,9 @@ function initDeck() {
         RANKS.forEach((rank) => {
             const abbrRank = rank.length > 2 ? rank[0] : rank;
             const imageKey = abbrRank + suite[0] + ".png";
-            deck.push(new Card(suite, rank, sheet.textures[imageKey]));
+            deck.push(
+                new Card(suite, rank, sheet.textures[imageKey], onCardClicked)
+            );
         });
     });
     shuffle(deck);
@@ -79,3 +82,14 @@ function shuffle(array) {
 
     return array;
 }
+
+// Callbacks
+
+function onCardClicked() {
+    if (discard.length <= 0) {
+        discard.push(this);
+        board.removeChild(this);
+    }
+}
+
+const onDrawPileClicked = () => {};
